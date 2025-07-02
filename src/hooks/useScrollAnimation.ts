@@ -19,20 +19,22 @@ export const useScrollAnimation = (direction: AnimationDirection = 'up', delay: 
         opacity: 1,
         y: 0,
         x: 0,
-        transition: {
-          duration: 0.8,
-          delay: delay,
-          ease: [0.25, 0.1, 0.25, 1],
-        },
       },
+    };
+
+    const transition = {
+      duration: 0.8,
+      delay: delay,
+      ease: [0.25, 0.1, 0.25, 1] as const,
     };
 
     return {
       initial: "hidden",
       animate: isInView ? "visible" : "hidden",
       variants,
+      transition,
     };
   };
 
   return { ref, getAnimationVariants };
-}; 
+};
