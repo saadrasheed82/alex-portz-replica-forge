@@ -1,8 +1,12 @@
+
 import { Code, Palette, Smartphone, Globe } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { AnimatedSection } from './AnimatedSection';
+import { useScrollFloat } from '../hooks/useScrollFloat';
 
 const About = () => {
+  const floatOffset = useScrollFloat(0.5);
+
   const skills = [
     {
       icon: Code,
@@ -41,7 +45,10 @@ const About = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           <AnimatedSection direction="left">
-            <div className="w-full h-96 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl flex items-center justify-center">
+            <div 
+              className="w-full h-96 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl flex items-center justify-center transition-transform duration-100 ease-out"
+              style={{ transform: `translateY(${floatOffset}px)` }}
+            >
               <div className="text-6xl font-bold text-gradient">AP</div>
             </div>
           </AnimatedSection>
@@ -68,7 +75,10 @@ const About = () => {
               direction="up" 
               delay={index * 0.1}
             >
-              <Card className="bg-card border-border hover-lift cursor-pointer">
+              <Card 
+                className="bg-card border-border hover-lift cursor-pointer transition-transform duration-100 ease-out"
+                style={{ transform: `translateY(${floatOffset * 0.3}px)` }}
+              >
                 <CardContent className="p-6 text-center">
                   <skill.icon className="mx-auto mb-4 text-primary" size={48} />
                   <h4 className="text-xl font-semibold mb-2">{skill.title}</h4>
