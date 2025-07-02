@@ -1,7 +1,7 @@
-
 import { ExternalLink, Github } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { AnimatedSection } from './AnimatedSection';
 
 const Work = () => {
   const projects = [
@@ -46,56 +46,62 @@ const Work = () => {
   return (
     <section id="work" className="py-20 px-6 bg-card/30">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <AnimatedSection direction="up" className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Featured <span className="text-gradient">Work</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             A collection of projects that showcase my skills in design, development, and problem-solving.
           </p>
-        </div>
+        </AnimatedSection>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project) => (
-            <Card key={project.id} className="bg-card border-border overflow-hidden hover-lift group">
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Button size="sm" variant="secondary" asChild>
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink size={16} />
-                    </a>
-                  </Button>
-                  <Button size="sm" variant="secondary" asChild>
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github size={16} />
-                    </a>
-                  </Button>
+          {projects.map((project, index) => (
+            <AnimatedSection
+              key={project.id}
+              direction={index % 2 === 0 ? "left" : "right"}
+              delay={index * 0.2}
+            >
+              <Card className="bg-card border-border overflow-hidden hover-lift group">
+                <div className="relative overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Button size="sm" variant="secondary" asChild>
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink size={16} />
+                      </a>
+                    </Button>
+                    <Button size="sm" variant="secondary" asChild>
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Github size={16} />
+                      </a>
+                    </Button>
+                  </div>
                 </div>
-              </div>
-              
-              <CardContent className="p-6">
-                <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                
+                <CardContent className="p-6">
+                  <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
           ))}
         </div>
       </div>
