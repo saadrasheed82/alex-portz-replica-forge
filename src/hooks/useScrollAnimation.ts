@@ -1,3 +1,4 @@
+
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 
@@ -21,7 +22,7 @@ export const useScrollAnimation = (direction: AnimationDirection = 'up', delay: 
         transition: {
           duration: 0.8,
           delay: delay,
-          ease: "easeOut",
+          ease: [0.25, 0.1, 0.25, 1],
         },
       },
     };
