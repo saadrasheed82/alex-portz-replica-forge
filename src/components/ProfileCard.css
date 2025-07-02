@@ -1,0 +1,202 @@
+.pc-card-wrapper {
+  --card-opacity: 0.15;
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  --background-x: 50%;
+  --background-y: 50%;
+  --pointer-from-center: 0;
+  --pointer-from-top: 0.5;
+  --pointer-from-left: 0.5;
+  --rotate-x: 0deg;
+  --rotate-y: 0deg;
+  --card-scale: 1;
+  --card-blur: 0px;
+  --card-x: 0px;
+  --card-y: 0px;
+  --card-z: 0px;
+  --card-rotateX: 0deg;
+  --card-rotateY: 0deg;
+  --card-rotateZ: 0deg;
+  --card-width: 400px;
+  --card-height: 500px;
+  --card-border-radius: 24px;
+  --card-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+  --card-transition: transform 0.3s ease;
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+}
+
+.pc-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: scale(var(--card-scale)) translate3d(var(--card-x), var(--card-y), var(--card-z)) rotateX(var(--card-rotateX)) rotateY(var(--card-rotateY)) rotateZ(var(--card-rotateZ));
+  transition: var(--card-transition);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  border-radius: var(--card-border-radius);
+}
+
+.pc-inside {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  overflow: hidden;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+  border-radius: var(--card-border-radius);
+}
+
+.pc-shine {
+  position: absolute;
+  inset: 0;
+  background: var(--card-shine);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.pc-glare {
+  position: absolute;
+  inset: 0;
+  background: var(--card-glare);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.pc-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  color: white;
+  text-align: center;
+}
+
+.pc-avatar-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: block;
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+}
+
+.avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.pc-details {
+  margin-bottom: 16px;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 0 24px;
+}
+
+.pc-details h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.pc-details p {
+  font-size: 16px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.pc-user-info {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 12px;
+  z-index: 3;
+  border-radius: 12px;
+}
+
+.pc-user-details {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pc-mini-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.pc-mini-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pc-user-text {
+  text-align: left;
+}
+
+.pc-handle {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pc-status {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.pc-contact-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pc-contact-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.pc-card-wrapper.active .pc-shine,
+.pc-card-wrapper.active .pc-glare {
+  opacity: 1;
+}
+
+.pc-card-wrapper.active .pc-card {
+  transform: scale(var(--card-scale)) translate3d(var(--card-x), var(--card-y), var(--card-z)) rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--card-rotateZ));
+} 
